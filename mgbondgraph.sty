@@ -2,7 +2,7 @@
 \RequirePackage{tikz}
 \RequirePackage{ifthen}
 
-\usetikzlibrary{arrows,calc}
+\usetikzlibrary{arrows,calc,decorations.markings}
 
 \pgfarrowsdeclare{bArrow down}{bArrow down}
 {
@@ -50,13 +50,13 @@
 \pgfarrowsdeclarecombine{combinedUp}{combinedUp}{bArrow up}{bArrow up}{|}{|}
 \pgfarrowsdeclarecombine{combinedDown}{combinedDown}{bArrow down}{bArrow down}{|}{|}
 
-\newcommand{\tikzAngleOfLine}{\tikz@AngleOfLine}
-  \def\tikz@AngleOfLine(#1)(#2)#3{%
-  \pgfmathanglebetweenpoints{%
-    \pgfpointanchor{#1}{center}}{%
-    \pgfpointanchor{#2}{center}}
-  \pgfmathsetmacro{#3}{\pgfmathresult}%
-  }
+\tikzset{activatedbond/.style={
+        decoration={markings,
+            mark= at position 0.5 with {\arrow[very thick]{stealth}} ,
+        },
+        postaction={decorate}
+    }
+}
 
 % Draw a bond between two components
 % Input:
@@ -67,18 +67,18 @@
 %   #5 flow label
 % Example:
 %   \bond[very thick]{Se}{I}{e}{q}
-\newcommand{\bond}[5][thick]{%
+\newcommand{\bond}[5][]{%
 	% Calc the angle between two points
 	\pgfmathanglebetweenpoints{%
 	    \pgfpointanchor{#2}{center}}{%
 	    \pgfpointanchor{#3}{center}}
 	\pgfmathparse{ifthenelse(mod((\pgfmathresult+45),360)<=180 ,1,0)} 
 	\ifdim\pgfmathresult pt= 1 pt 
-		\draw [-bArrow down, auto, #1] (#2) to node {#4}  (#3);
-		\path [ auto, #1] (#3) to node {#5}  (#2);
+		\draw [-bArrow down, auto, thick, #1] (#2) to node {#4}  (#3);
+		\path [auto] (#3) to node {#5}  (#2);
 	\else 
-		\draw [-bArrow up, auto, #1] (#2) to node {#5}  (#3);
-		\path [auto, #1] (#3) to node {#4}  (#2);
+		\draw [-bArrow up, auto, thick, #1] (#2) to node {#5}  (#3);
+		\path [auto] (#3) to node {#4}  (#2);
 	\fi 	
 }
 
@@ -91,18 +91,18 @@
 %   #5 flow label
 % Example:
 %   \bondCSStart[very thick]{Se}{I}{e}{q}
-\newcommand{\bondCSStart}[5][thick]{%
+\newcommand{\bondCSStart}[5][]{%
 	% Calc the angle between two points
 	\pgfmathanglebetweenpoints{%
 	    \pgfpointanchor{#2}{center}}{%
 	    \pgfpointanchor{#3}{center}}
 	\pgfmathparse{ifthenelse(mod((\pgfmathresult+45),360)<=180 ,1,0)} 
 	\ifdim\pgfmathresult pt= 1 pt 
-		\draw [|-bArrow down, auto, #1] (#2) to node {#4}  (#3);
-		\path [auto, #1] (#3) to node {#5}  (#2);
+		\draw [|-bArrow down, auto, thick #1] (#2) to node {#4}  (#3);
+		\path [auto] (#3) to node {#5}  (#2);
 	\else 
-		\draw [|-bArrow up, auto, #1] (#2) to node{#5}  (#3);
-		\path [auto, #1] (#3) to node {#4}  (#2);
+		\draw [|-bArrow up, auto, thick, #1] (#2) to node{#5}  (#3);
+		\path [auto] (#3) to node {#4}  (#2);
 	\fi 	
 }
 
@@ -115,18 +115,18 @@
 %   #5 flow label
 % Example:
 %   \bondCSEnd[very thick]{Se}{I}{e}{q}
-\newcommand{\bondCSEnd}[5][thick]{%
+\newcommand{\bondCSEnd}[5][]{%
 	% Calc the angle between two points
 	\pgfmathanglebetweenpoints{%
 	    \pgfpointanchor{#2}{center}}{%
 	    \pgfpointanchor{#3}{center}}
 	\pgfmathparse{ifthenelse(mod((\pgfmathresult+45),360)<=180 ,1,0)} 
 	\ifdim\pgfmathresult pt= 1 pt 
-		\draw [-combinedDown, auto, #1] (#2) to node {#4}  (#3);
-		\path [auto, #1] (#3) to node {#5}  (#2);
+		\draw [-combinedDown, auto, thick, #1] (#2) to node {#4}  (#3);
+		\path [auto] (#3) to node {#5}  (#2);
 	\else 
-		\draw [-combinedUp, auto, #1] (#2) to node {#5}  (#3);
-		\path [auto, #1] (#3) to node {#4}  (#2);
+		\draw [-combinedUp, auto, thick, #1] (#2) to node {#5}  (#3);
+		\path [auto] (#3) to node {#4}  (#2);
 	\fi 	
 }
 
