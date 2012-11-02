@@ -52,7 +52,7 @@
 
 \tikzset{activatedbond/.style={
         decoration={markings,
-            mark= at position 0.5 with {\arrow[very thick]{stealth}} ,
+            mark= at position 0.5 with {\arrow[very thick]{latex}} ,
         },
         postaction={decorate}
     }
@@ -98,7 +98,7 @@
 	    \pgfpointanchor{#3}{center}}
 	\pgfmathparse{ifthenelse(mod((\pgfmathresult+45),360)<=180 ,1,0)} 
 	\ifdim\pgfmathresult pt= 1 pt 
-		\draw [|-bArrow down, auto, thick #1] (#2) to node {#4}  (#3);
+		\draw [|-bArrow down, auto, thick, #1] (#2) to node {#4}  (#3);
 		\path [auto] (#3) to node {#5}  (#2);
 	\else 
 		\draw [|-bArrow up, auto, thick, #1] (#2) to node{#5}  (#3);

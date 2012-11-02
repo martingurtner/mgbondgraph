@@ -10,38 +10,94 @@
 
 \begin{document}
 
-
-\begin{tikzpicture}[node distance = 2cm, font=\small]
-	\node (Se)  {$S_e$};
-	\node (J1_1)  [right of=Se] {1};
-	\node (I1) [above of=J1_1] {$I_1:L$};
-	\node (R1) [below of=J1_1] {$R_1:R$};
-	\node (G) [right of=J1_1] {G};
-	\node (J0_1)  [right of=G] {0};
-	\node (C) [above of=J0_1] {$C_1$};
-	\node (J1_2)  [right of=J0_1, label={[label distance = -0.2cm]above left:$e_1$}] {1};
-	\node (I2) [above of=J1_2] {$I_2:J$};
-	\node (C2) [below of=J1_2] {$C_2$};
-	\node (R2) [right of=J1_2, node distance = 3cm, yshift=2cm] {$R_2:b_1$};
-	\node (R3) [right of=J1_2, node distance = 3cm, yshift=-2cm] {$R_3:b_2$};
-	
-	
-	\bondCSEnd{Se}{J1_1}{$e_0$}{$\times$}
-	\bondCSEnd[draw=red]{J1_1}{I1}{\mgcirc{$\dot{p}$}}{p/I}
-	\bondCSStart{J1_1}{R1}{}{}
-	\bondCSStart{J1_1}{G}{}{}
-	
-	\bondCSEnd[activatedbond]{G}{J0_1}{}{}
-	\bondCSEnd{J0_1}{C}{}{}
-	\bondCSEnd{J0_1}{J1_2}{}{}
+\begin{figure}[!h!t]
+	\centering
+	\begin{tikzpicture}[node distance = 1.5cm, font=\small]
+		\node (Se)  {$S_e$};
+		\node (J1_1)  [right of=Se] {1};
+		\node (I1) [above of=J1_1] {$I_1$};
+		\node (R1) [below of=J1_1] {$R_1$};
+		\node (G) [right of=J1_1] {G};
+		\node (J0_1)  [right of=G] {0};
+		\node (C) [above of=J0_1] {$C_1$};
+		\node (J1_2)  [right of=J0_1] {1};
+		\node (I2) [above of=J1_2] {$I_2$};
+		\node (C2) [below of=J1_2] {$C_2$};
+		\node (R2) [right of=J1_2, node distance = 2cm, yshift=1.4cm] {$R_2$};
+		\node (R3) [right of=J1_2, node distance = 2cm, yshift=-1.4cm] {$R_3$};
 		
-	\bondCSEnd{J1_2}{I2}{}{}
-	\bondCSStart{J1_2}{C2}{}{}
-	\bondCSEnd{J1_2}{R2}{$e_{R2}$}{$\dot{q}_{R2}$}
-	\bondCSStart{J1_2}{R3}{$e_{R3}$}{$\dot{q}_{R3}$}
-\end{tikzpicture}
+		
+		\bond{Se}{J1_1}{}{}
+		\bond{J1_1}{I1}{}{}
+		\bond{J1_1}{R1}{}{}
+		\bond{J1_1}{G}{}{}
+		
+		\bond{G}{J0_1}{}{}
+		\bond{J0_1}{C}{}{}
+		\bond{J0_1}{J1_2}{}{}
+			
+		\bond{J1_2}{I2}{}{}
+		\bond{J1_2}{C2}{}{}
+		\bond{J1_2}{R2}{}{}
+		\bond{J1_2}{R3}{}{}
+	\end{tikzpicture}
+	\caption{Example 1}
+	\label{Fig:Ex1}
+\end{figure}
 
+\begin{figure}[!h!t]
+	\centering
+	\begin{tikzpicture}[node distance = 2cm, font=\small]
+		\node (Se)  {$S_e$};
+		\node (J1_1)  [right of=Se, label={[label distance = -0.2cm]below left:$f_1$}] {1};
+		\node (I1) [above of=J1_1] {$I_1\!:L$};
+		\node (R1) [below of=J1_1] {$R_1\!:R$};
+		\node (G) [right of=J1_1] {G};
+		\node (J0_1)  [right of=G, label={[label distance = -0.2cm]above left:$e_1$}] {0};
+		\node (C) [above of=J0_1] {$C_1$};
+		\node (J1_2)  [right of=J0_1, label={[label distance = -0.2cm]below left:$f_2$}] {1};
+		\node (I2) [above of=J1_2] {$I_2\!:J$};
+		\node (C2) [below of=J1_2] {$C_2$};
+		\node (R2) [right of=J1_2, node distance = 3cm, yshift=2cm] {$R_2\!:b_1$};
+		\node (R3) [right of=J1_2, node distance = 3cm, yshift=-2cm] {$R_3\!:b_2$};
+		
+		
+		\bondCSEnd{Se}{J1_1}{$e_0$}{$\times$}
+		\bondCSEnd{J1_1}{I1}{\mgcirc{$\dot{p}$}}{p/I}
+		\bondCSStart{J1_1}{R1}{}{}
+		\bondCSStart{J1_1}{G}{}{}
+		
+		\bondCSEnd{G}{J0_1}{}{}
+		\bondCSEnd{J0_1}{C}{}{}
+		\bondCSEnd{J0_1}{J1_2}{}{}
+			
+		\bondCSEnd{J1_2}{I2}{}{}
+		\bondCSStart[draw=red]{J1_2}{C2}{}{}
+		\bondCSStart{J1_2}{R2}{$e_{R2}$}{$\dot{q}_{R2}$}
+		\bondCSStart{J1_2}{R3}{$e_{R3}$}{$\dot{q}_{R3}$}
+	\end{tikzpicture}
+	\caption{Example 2}
+	\label{Fig:Ex2}
+\end{figure}
 
-
+\begin{figure}[!h!t]
+	\centering
+	\begin{tikzpicture}[node distance = 1.5cm, font=\small]
+		\node (Sf)  {$S_f$};
+		\node (J1_1)  [right of=Se] {1};
+		\node (R) [above of=J1_1] {$R$};
+		\node (J1_0) [right of=J1_1] {$0$};
+		\node (C) [right of=J1_0] {$C$};
+		\node (S) [below of=J1_0] {};		
+		
+		\bond{Sf}{J1_1}{}{}
+		\bond{J1_1}{R}{}{}
+		\bond[activatedbond]{J1_1}{J1_0}{}{}
+		\bond{J1_0}{C}{}{}		
+		\bond{J1_0}{S}{}{}		
+	\end{tikzpicture}
+	\caption{Example 3}
+	\label{Fig:Ex3}
+\end{figure}
 
 \end{document}
