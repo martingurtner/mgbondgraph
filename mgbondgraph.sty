@@ -1,4 +1,5 @@
-\ProvidesPackage{mgbondgraph}[2012/10/31 v0.2RC]
+%Author: Martin Gurtner
+\ProvidesPackage{mgbondgraph}[2012/10/31 v1.0]
 \RequirePackage{tikz}
 \RequirePackage{ifthen}
 \RequirePackage{xparse}
@@ -19,7 +20,6 @@
 \pgfsetroundjoin % fix join
 \pgfsetroundcap % fix cap
 \pgfpathmoveto{\pgfpoint{-4\arrowsize}{4\arrowsize}}
-%\pgfpatharc{180}{270}{4\arrowsize}
 \pgfusepathqstroke
 \pgfpathmoveto{\pgfpointorigin}
 \pgfpatharc{90}{140}{4\arrowsize}
@@ -43,7 +43,6 @@
 \pgfmathsetmacro{\arrowheadyshift}{\pgfmathresult}
 \pgfmathparse{-\arrowsize*sin(50)}
 \pgfmathsetmacro{\arrowheadxshift}{\pgfmathresult}
-%\pgfpathmoveto{\pgfpoint{\arrowheadxshift}{\arrowheadyshift}}%1.429\arrowsize}
 \pgfpathmoveto{\pgfpoint{-3.06\arrowsize}{1.429\arrowsize}}
 \pgfpatharc{220}{270}{4\arrowsize}
 \pgfusepathqstroke
@@ -71,7 +70,7 @@
 %	\bond{G}{J0_1}{e}{q}
 %	\bond[activatedbond]{G}{J0_1}{e}[color=red]{q}[color=blue]
 \DeclareDocumentCommand{\bond}{O{} m m m O{} m O{}}{
-	% Calc the angle between two points
+	% Calculate the angle between two points
 	\pgfmathanglebetweenpoints{%
 	    \pgfpointanchor{#2}{center}}{%
 	    \pgfpointanchor{#3}{center}}
@@ -98,7 +97,7 @@
 %	\bondCSStart{G}{J0_1}{e}{q}
 %	\bondCSStart[activatedbond]{G}{J0_1}{e}[color=red]{q}[color=blue]
 \DeclareDocumentCommand{\bondCSStart}{O{} m m m O{} m O{}}{
-	% Calc the angle between two points
+	% Calculate the angle between two points
 	\pgfmathanglebetweenpoints{%
 	    \pgfpointanchor{#2}{center}}{%
 	    \pgfpointanchor{#3}{center}}
@@ -125,7 +124,7 @@
 %	\bondCSEnd{G}{J0_1}{e}{q}
 %	\bondCSEnd[activatedbond]{G}{J0_1}{e}[color=red]{q}[color=blue]
 \DeclareDocumentCommand{\bondCSEnd}{O{} m m m O{} m O{}}{
-	% Calc the angle between two points
+	% Calculate the angle between two points
 	\pgfmathanglebetweenpoints{%
 	    \pgfpointanchor{#2}{center}}{%
 	    \pgfpointanchor{#3}{center}}
